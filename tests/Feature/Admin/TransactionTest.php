@@ -2,10 +2,8 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TransactionTest extends TestCase
@@ -15,7 +13,7 @@ class TransactionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->seed(\Database\Seeders\AdminSeeder::class);
     }
 

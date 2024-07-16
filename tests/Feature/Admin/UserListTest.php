@@ -5,7 +5,6 @@ namespace Tests\Feature\Admin;
 use App\Models\User;
 use App\Notifications\NewCheckerAccountCreated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
@@ -16,7 +15,7 @@ class UserListTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->seed(\Database\Seeders\AdminSeeder::class);
     }
 

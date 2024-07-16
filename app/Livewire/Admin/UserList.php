@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 
 class UserList extends Component
 {
-    use WithPagination, WithoutUrlPagination;
+    use WithoutUrlPagination, WithPagination;
 
     public $id;
 

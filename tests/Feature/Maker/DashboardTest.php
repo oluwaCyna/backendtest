@@ -4,8 +4,6 @@ namespace Tests\Feature\Maker;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
@@ -30,7 +28,7 @@ class DashboardTest extends TestCase
         $maker = User::factory()->maker()->create();
         $this->actingAs($maker);
         $response = $this->get('/dashboard');
-        
+
         $response->assertSee(['Total Transactions', 'Balance', 'Create Transaction', 'Transaction History']);
     }
 }

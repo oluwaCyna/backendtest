@@ -12,10 +12,10 @@ class TransactionController extends Controller
 {
     public function create(Request $request)
     {
-        if ( ! Auth::user()->hasWallet() ) {
+        if (! Auth::user()->hasWallet()) {
             return redirect()->back()->with('error', 'Please, create a wallet first');
         }
-    
+
         $validated = $request->validate([
             'type' => 'required|string',
             'description' => 'required|string',
@@ -31,7 +31,7 @@ class TransactionController extends Controller
 
         $amount = number_format($transaction->amount, 2);
         $name = $transaction->user->name;
-    
+
         TransactionActivity::create([
             'transaction_id' => $transaction->id,
             'activity' => "$name initiated a $transaction->type transaction of NGN $amount",

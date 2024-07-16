@@ -22,12 +22,12 @@ class Wallet extends Model
 
     public function addToWallet($amount)
     {
-        (double) $this->balance += (double) $amount;
+        (float) $this->balance += (float) $amount;
     }
 
     public function reduceFromWallet($amount)
     {
-        (double) $this->balance -= (double) $amount;
+        (float) $this->balance -= (float) $amount;
     }
 
     public function getFormattedBalanceAttribute()

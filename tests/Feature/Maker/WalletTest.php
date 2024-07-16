@@ -4,7 +4,6 @@ namespace Tests\Feature\Maker;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class WalletTest extends TestCase
@@ -17,7 +16,7 @@ class WalletTest extends TestCase
         $this->actingAs($maker);
 
         $response = $this->get('/dashboard');
-        
+
         $response->assertSee(['Balance', 'Create Wallet']);
         $response->assertDontSeeText('NGN');
     }
@@ -28,7 +27,7 @@ class WalletTest extends TestCase
         $this->actingAs($maker);
 
         $response = $this->post(route('wallet.create'), ['id' => $maker->id]);
-        
+
         $response->assertSessionHasNoErrors();
         $this->assertDatabaseHas('wallets', [
             'user_id' => $maker->id,
@@ -43,7 +42,7 @@ class WalletTest extends TestCase
 
         $response = $this->post(route('wallet.create'), ['id' => $maker->id]);
         $response = $this->get('/dashboard');
-        
+
         $response->assertDontSeeText('Create Wallet');
         $response->assertSee(['Balance', 'NGN']);
     }

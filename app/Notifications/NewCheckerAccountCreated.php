@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -36,9 +35,9 @@ class NewCheckerAccountCreated extends Notification
     {
         return (new MailMessage)
             ->greeting('Hello!')
-            ->line("Your checker account has been set up!")
+            ->line('Your checker account has been set up!')
             ->line("Email: {$notifiable->email}")
-            ->line("Password: password")
+            ->line('Password: password')
             ->action('Login to change password here', route('profile.edit'))
             ->action('Login here', route('admin.dashboard'))
             ->line('Thank you for using our application!');

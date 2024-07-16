@@ -18,6 +18,7 @@ class MakerMiddleware
         if ($request->user()->isMaker()) {
             return $next($request);
         }
+
         return redirect(route('admin.dashboard'));
     }
 }

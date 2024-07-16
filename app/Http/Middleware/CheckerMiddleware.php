@@ -18,6 +18,7 @@ class CheckerMiddleware
         if ($request->user()->isChecker()) {
             return $next($request);
         }
+
         return redirect(route('user.dashboard'));
     }
 }

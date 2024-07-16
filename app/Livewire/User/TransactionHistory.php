@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 
 class TransactionHistory extends Component
 {
-    use WithPagination, WithoutUrlPagination;
+    use WithoutUrlPagination, WithPagination;
 
     public $status;
 

@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -36,7 +35,7 @@ class MakerToCheckerUpdated extends Notification
     {
         return (new MailMessage)
             ->greeting('Hello!')
-            ->line("Your account has been upgraded to checker account!")
+            ->line('Your account has been upgraded to checker account!')
             ->action('Login here', route('admin.dashboard'))
             ->line('Thank you for using our application!');
     }

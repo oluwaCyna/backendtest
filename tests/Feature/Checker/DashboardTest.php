@@ -4,8 +4,6 @@ namespace Tests\Feature\Checker;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
@@ -31,7 +29,7 @@ class DashboardTest extends TestCase
         $checker = User::factory()->checker()->create();
         $this->actingAs($checker);
         $response = $this->get(route('admin.dashboard'));
-        
+
         $response->assertSee(['Total Transactions', 'Balance', 'Transaction Activity', 'Transaction History']);
     }
 
@@ -40,7 +38,7 @@ class DashboardTest extends TestCase
         $checker = User::factory()->checker()->create();
         $this->actingAs($checker);
         $response = $this->get('/dashboard');
-        
+
         $response->assertDontSee(['Create User', 'User List']);
     }
 }

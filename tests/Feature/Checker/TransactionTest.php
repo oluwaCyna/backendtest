@@ -5,7 +5,6 @@ namespace Tests\Feature\Checker;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TransactionTest extends TestCase
@@ -15,7 +14,7 @@ class TransactionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->seed(\Database\Seeders\AdminSeeder::class);
     }
 
@@ -72,7 +71,7 @@ class TransactionTest extends TestCase
     //         'type' => $transaction->type,
     //         'amount' => $transaction->amount,
     //         'description' => $transaction->description,
-    //         'status' => 'pending',  
+    //         'status' => 'pending',
     //     ]);
 
     //     $transaction->update(['status' => 'approved']);
@@ -85,7 +84,7 @@ class TransactionTest extends TestCase
     //         'type' => $transaction->type,
     //         'amount' => $transaction->amount,
     //         'description' => $transaction->description,
-    //         'status' => 'approved',  
+    //         'status' => 'approved',
     //     ]);
     // }
 

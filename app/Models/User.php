@@ -64,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function createWallet()
     {
-        if ( $this->hasWallet() ) {
+        if ($this->hasWallet()) {
             return $this->wallet();
         }
 

@@ -7,13 +7,13 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 
 class TransactionHistoryTest extends TestCase
 {
     use RefreshDatabase;
+
     /** @test */
     public function renders_successfully()
     {
@@ -69,7 +69,7 @@ class TransactionHistoryTest extends TestCase
             ->assertSee(number_format($transaction->amount))
             ->assertSee(ucfirst('approved'));
 
-            Livewire::actingAs($admin)
+        Livewire::actingAs($admin)
             ->test(TransactionHistory::class)
             ->set('id', $transaction->id)
             ->set('action', 'rejecte')

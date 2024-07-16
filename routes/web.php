@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\TransactionController;
 use App\Http\Controllers\User\WalletController;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +23,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::middleware(['auth', 'verified', 'is_maker'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
     Route::post('/transaction/create', [TransactionController::class, 'create'])->name('transaction.create');
@@ -41,4 +40,4 @@ Route::middleware(['auth', 'verified', 'is_checker'])->group(function () {
     Route::post('/admin/users/create', [UserController::class, 'create'])->middleware('is_admin')->name('admin.users.create');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

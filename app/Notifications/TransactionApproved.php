@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -37,6 +36,7 @@ class TransactionApproved extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $amount = number_format($this->transaction->amount, 2);
+
         return (new MailMessage)
             ->greeting('Hello!')
             ->line("Your {$this->transaction->type} transaction of NGN {$amount} has been approved!")

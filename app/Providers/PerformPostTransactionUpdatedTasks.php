@@ -6,9 +6,6 @@ use App\Models\TransactionActivity;
 use App\Models\Wallet;
 use App\Notifications\TransactionApproved;
 use App\Notifications\TransactionRejected;
-use App\Providers\TransactionUpdated;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class PerformPostTransactionUpdatedTasks
 {
@@ -50,7 +47,6 @@ class PerformPostTransactionUpdatedTasks
                 $transaction->user->notify(new TransactionRejected($transaction));
             }
         }
-
 
         // send notification to trns own
 

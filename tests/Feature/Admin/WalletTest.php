@@ -5,7 +5,6 @@ namespace Tests\Feature\Admin;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class WalletTest extends TestCase
@@ -15,7 +14,7 @@ class WalletTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->seed(\Database\Seeders\AdminSeeder::class);
     }
 
@@ -27,7 +26,7 @@ class WalletTest extends TestCase
         $this->actingAs($admin);
 
         $response = $this->get(route('admin.dashboard'));
-        
+
         $response->assertSee(['NGN', number_format($wallet->balance, 2)]);
     }
 }
