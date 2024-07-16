@@ -40,7 +40,7 @@ start the server
 $ php artisan serve
 $ npm run dev
 ```
-Admin details
+Admin login details
 - Email: admin@dantown.com
 - Password: password
 

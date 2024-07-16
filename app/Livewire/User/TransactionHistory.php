@@ -3,6 +3,8 @@
 namespace App\Livewire\User;
 
 use App\Models\Transaction;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
@@ -13,7 +15,10 @@ class TransactionHistory extends Component
 
     public $status;
 
-    public function getTransactionHistory()
+    /**
+     * Retrieves the transaction history for the authenticated user based on status filters.
+     */
+    public function getTransactionHistory(): Paginator
     {
         return Transaction::where('user_id', auth()->user()->id)
             ->when($this->status, function ($query) {
@@ -33,7 +38,10 @@ class TransactionHistory extends Component
             })->orderBy('created_at', 'DESC')->paginate(10);
     }
 
-    public function render()
+    /**
+     * Render the view for the transaction history.
+     */
+    public function render(): View
     {
         return view('livewire.user.transaction-history', ['transactions' => $this->getTransactionHistory()]);
     }

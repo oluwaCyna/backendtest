@@ -5,12 +5,19 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\TransactionActivity;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    public function create(Request $request)
+    /**
+     * Create a new transaction based on the provided request data.
+     *
+     * @param  Request  $request  The request containing the transaction details
+     * @return RedirectResponse with success or error message based on transaction creation status
+     */
+    public function create(Request $request): RedirectResponse
     {
         if (! Auth::user()->hasWallet()) {
             return redirect()->back()->with('error', 'Please, create a wallet first');
