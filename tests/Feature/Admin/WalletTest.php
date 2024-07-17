@@ -29,4 +29,18 @@ class WalletTest extends TestCase
 
         $response->assertSee(['NGN', number_format($wallet->balance, 2)]);
     }
+
+    public function test_admin_can_not_create_wallet(): void
+    {
+        $admin = User::factory()->admin()->create();
+        $this->actingAs($admin);
+
+        $response = $this->post(route('wallet.create'), ['id' => $admin->id]);
+
+        $response->assertStatus(302);
+        $this->assertDatabaseMissing('wallets', [
+            'user_id' => $admin->id,
+            'balance' => 0.00,
+        ]);
+    }
 }

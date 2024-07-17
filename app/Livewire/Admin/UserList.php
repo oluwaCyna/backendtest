@@ -38,6 +38,8 @@ class UserList extends Component
     public function confirmUserAction()
     {
         $user = User::find($this->id);
+        $this->authorize('update', $user);
+
         $user->setUserAsChecker();
         $user->save();
 
@@ -59,6 +61,8 @@ class UserList extends Component
      */
     public function render(): View
     {
+        $this->authorize('viewAny', User::class);
+
         return view('livewire.admin.user-list', ['users' => $this->getUsers()]);
     }
 }

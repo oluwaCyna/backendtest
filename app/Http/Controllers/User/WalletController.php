@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,8 @@ class WalletController extends Controller
      */
     public function create(Request $request): RedirectResponse
     {
+        $this->authorize('create', Wallet::class);
+
         User::find($request->id)->createWallet();
 
         return redirect()->back()->with('success', 'Wallet created successfully');
