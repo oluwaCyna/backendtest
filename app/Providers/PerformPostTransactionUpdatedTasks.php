@@ -25,7 +25,6 @@ class PerformPostTransactionUpdatedTasks
         $status = $event->status;
         $transaction = $event->transaction;
 
-        // update wallets
         if ($status === 'approved') {
             if ($transaction->type === 'deposit') {
                 $transaction->user->wallet->addToWallet($transaction->amount);
@@ -44,13 +43,12 @@ class PerformPostTransactionUpdatedTasks
                 $admin_wallet->reduceFromWallet($transaction->amount);
                 $admin_wallet->save();
 
-                $transaction->user->notify(new TransactionRejected($transaction));
+                $transaction->user->notify(new TransactionApproved($transaction));
             }
+        } else {
+            $transaction->user->notify(new TransactionRejected($transaction));
         }
 
-        // send notification to trns own
-
-        // create activity
         $amount = number_format($transaction->amount, 2);
         $name = $transaction->user->name;
 
